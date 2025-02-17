@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,22 +22,22 @@ namespace WhoWantsToBeABillionaire
         public Form1()
         {
             InitializeComponent();
-            ReadFile();
+            //ReadFile();
             startGame();
         }
-        private void ReadFile()
-        {
-            string path = @"Вопросы.txt";
+        //private void ReadFile()
+        //{
+        //    string path = @"Вопросы.txt";
 
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    questions.Add(new Question(line.Split('\t')));
-                }
-            }
-        }
+        //    using (StreamReader sr = new StreamReader(path))
+        //    {
+        //        string line;
+        //        while ((line = sr.ReadLine()) != null)
+        //        {
+        //            questions.Add(new Question(line.Split('\t')));
+        //        }
+        //    }
+        //}
         private void ShowQuestion(Question q)
         {
             lblQuestion.Text = q.Text;
@@ -45,11 +46,29 @@ namespace WhoWantsToBeABillionaire
             btnAnswerC.Text = q.Answers[2];
             btnAnswerD.Text = q.Answers[3];
         }
+
         private Question GetQuestion(int level)
         {
-            var questionsWithLevel = questions.Where(q => q.Level == level).ToList();
-            return questionsWithLevel[rnd.Next(questionsWithLevel.Count)];
+            SQLiteConnection cn = new SQLiteConnection();
+            cn.ConnectionString = @"Data Source=WWTBAB_SQLbase.db;Version=3";
+
+            cn.Open();
+
+            var cmd = new SQLiteCommand($@"select * from Questions WHERE Level={level} 
+                                            order by Random() LIMIT 1", cn);
+
+            var dr = cmd.ExecuteReader();
+            dr.Read();
+            Question q = new Question(dr);
+
+            return q;
         }
+
+        //private Question GetQuestion(int level)
+        //{
+        //    var questionsWithLevel = questions.Where(q => q.Level == level).ToList();
+        //    return questionsWithLevel[rnd.Next(questionsWithLevel.Count)];
+        //}
         private void NextStep()
         {
             Button[] btns = new Button[] { btnAnswerA, btnAnswerB,

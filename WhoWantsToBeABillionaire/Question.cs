@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +13,24 @@ namespace WhoWantsToBeABillionaire
         public string[] Answers { get; private set; }
         public int RightAnswer { get; private set; }
         public int Level { get; private set; }
-        public Question(string[] s)
+
+        public Question(SQLiteDataReader dr)
         {
-            Text = s[0];
-            Answers = new string[4];
-            for (int i = 0; i < 4; i++)
-                Answers[i] = s[i + 1];
-            RightAnswer = int.Parse(s[5]);
-            Level = int.Parse(s[6]);
+            Text = dr["QuestionText"].ToString();
+            Answers = new string[4] { dr["Answer1"].ToString(),
+            dr["Answer2"].ToString(), dr["Answer3"].ToString(), dr["Answer4"].ToString()};
+            RightAnswer = int.Parse(dr["RightAnswer"].ToString());
+            Level = int.Parse(dr["Level"].ToString());
         }
+
+        //public Question(string[] s)
+        //{
+        //    Text = s[0];
+        //    Answers = new string[4];
+        //    for (int i = 0; i < 4; i++)
+        //        Answers[i] = s[i + 1];
+        //    RightAnswer = int.Parse(s[5]);
+        //    Level = int.Parse(s[6]);
+        //}
     }
 }
