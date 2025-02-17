@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAnswerA = new System.Windows.Forms.Button();
             this.btnAnswerB = new System.Windows.Forms.Button();
@@ -36,7 +39,10 @@
             this.lblQuestion = new System.Windows.Forms.Label();
             this.lstLevel = new System.Windows.Forms.ListBox();
             this.bntFiftyFifty = new System.Windows.Forms.Button();
+            this.btnAudienceHelp = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -51,9 +57,10 @@
             // 
             // btnAnswerA
             // 
-            this.btnAnswerA.Location = new System.Drawing.Point(49, 340);
+            this.btnAnswerA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAnswerA.Location = new System.Drawing.Point(12, 326);
             this.btnAnswerA.Name = "btnAnswerA";
-            this.btnAnswerA.Size = new System.Drawing.Size(136, 42);
+            this.btnAnswerA.Size = new System.Drawing.Size(202, 42);
             this.btnAnswerA.TabIndex = 1;
             this.btnAnswerA.Tag = "1";
             this.btnAnswerA.Text = "button1";
@@ -62,9 +69,10 @@
             // 
             // btnAnswerB
             // 
-            this.btnAnswerB.Location = new System.Drawing.Point(49, 388);
+            this.btnAnswerB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAnswerB.Location = new System.Drawing.Point(12, 388);
             this.btnAnswerB.Name = "btnAnswerB";
-            this.btnAnswerB.Size = new System.Drawing.Size(136, 38);
+            this.btnAnswerB.Size = new System.Drawing.Size(202, 38);
             this.btnAnswerB.TabIndex = 2;
             this.btnAnswerB.Tag = "2";
             this.btnAnswerB.Text = "button2";
@@ -73,9 +81,10 @@
             // 
             // btnAnswerC
             // 
-            this.btnAnswerC.Location = new System.Drawing.Point(191, 340);
+            this.btnAnswerC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAnswerC.Location = new System.Drawing.Point(232, 326);
             this.btnAnswerC.Name = "btnAnswerC";
-            this.btnAnswerC.Size = new System.Drawing.Size(132, 42);
+            this.btnAnswerC.Size = new System.Drawing.Size(184, 42);
             this.btnAnswerC.TabIndex = 3;
             this.btnAnswerC.Tag = "3";
             this.btnAnswerC.Text = "button3";
@@ -84,9 +93,10 @@
             // 
             // btnAnswerD
             // 
-            this.btnAnswerD.Location = new System.Drawing.Point(191, 388);
+            this.btnAnswerD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAnswerD.Location = new System.Drawing.Point(232, 388);
             this.btnAnswerD.Name = "btnAnswerD";
-            this.btnAnswerD.Size = new System.Drawing.Size(132, 38);
+            this.btnAnswerD.Size = new System.Drawing.Size(184, 38);
             this.btnAnswerD.TabIndex = 4;
             this.btnAnswerD.Tag = "4";
             this.btnAnswerD.Text = "button4";
@@ -95,9 +105,10 @@
             // 
             // lblQuestion
             // 
+            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblQuestion.Location = new System.Drawing.Point(22, 269);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(278, 41);
+            this.lblQuestion.Size = new System.Drawing.Size(431, 49);
             this.lblQuestion.TabIndex = 5;
             this.lblQuestion.Text = "label1";
             // 
@@ -122,7 +133,7 @@
             "2 000",
             "1 000",
             "500"});
-            this.lstLevel.Location = new System.Drawing.Point(474, 32);
+            this.lstLevel.Location = new System.Drawing.Point(474, 12);
             this.lstLevel.Name = "lstLevel";
             this.lstLevel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lstLevel.Size = new System.Drawing.Size(75, 260);
@@ -130,7 +141,7 @@
             // 
             // bntFiftyFifty
             // 
-            this.bntFiftyFifty.Location = new System.Drawing.Point(424, 347);
+            this.bntFiftyFifty.Location = new System.Drawing.Point(474, 287);
             this.bntFiftyFifty.Name = "bntFiftyFifty";
             this.bntFiftyFifty.Size = new System.Drawing.Size(75, 23);
             this.bntFiftyFifty.TabIndex = 7;
@@ -138,11 +149,39 @@
             this.bntFiftyFifty.UseVisualStyleBackColor = true;
             this.bntFiftyFifty.Click += new System.EventHandler(this.bntFiftyFifty_Click);
             // 
+            // btnAudienceHelp
+            // 
+            this.btnAudienceHelp.Location = new System.Drawing.Point(474, 326);
+            this.btnAudienceHelp.Name = "btnAudienceHelp";
+            this.btnAudienceHelp.Size = new System.Drawing.Size(75, 23);
+            this.btnAudienceHelp.TabIndex = 8;
+            this.btnAudienceHelp.Text = "AuditoryHelp";
+            this.btnAudienceHelp.UseVisualStyleBackColor = true;
+            this.btnAudienceHelp.Click += new System.EventHandler(this.btnAudienceHelp_Click);
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(49, 10);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(367, 227);
+            this.chart1.TabIndex = 9;
+            this.chart1.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 438);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.btnAudienceHelp);
             this.Controls.Add(this.bntFiftyFifty);
             this.Controls.Add(this.lstLevel);
             this.Controls.Add(this.lblQuestion);
@@ -155,6 +194,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -169,6 +209,8 @@
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.ListBox lstLevel;
         private System.Windows.Forms.Button bntFiftyFifty;
+        private System.Windows.Forms.Button btnAudienceHelp;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

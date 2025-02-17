@@ -9,11 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WhoWantsToBeABillionaire
 {
+    
     public partial class Form1 : Form
     {
+        private bool audienceHelpUsed = false;
+
+
         List<Question> questions = new List<Question>();
         private Random rnd = new Random();
         int level = 0;
@@ -81,11 +86,16 @@ btnAnswerC, btnAnswerC };
             currentQuestion = GetQuestion(level);
             ShowQuestion(currentQuestion);
             lstLevel.SelectedIndex = lstLevel.Items.Count - level;
+            chart1.Visible = false;
         }
         private void startGame()
         {
             level = 0;
             NextStep();
+            audienceHelpUsed = false;
+            btnAudienceHelp.Enabled = true;
+            chart1.Visible = false;
+            bntFiftyFifty.Enabled = true;
         }
 
         private void btnAnswerA_Click(object sender, EventArgs e)
@@ -152,7 +162,7 @@ btnAnswerC, btnAnswerC };
                     btns[n].Enabled = false;
                     count++;
                 }
-
+                bntFiftyFifty.Enabled = false;
             }
         }
 
@@ -160,5 +170,58 @@ btnAnswerC, btnAnswerC };
         {
 
         }
+
+        private void btnAudienceHelp_Click(object sender, EventArgs e)
+        {
+            if (audienceHelpUsed)
+                return;
+
+            audienceHelpUsed = true;
+            btnAudienceHelp.Enabled = false;
+
+            int correctAnswer = currentQuestion.RightAnswer;
+            int totalVotes = 100;
+            Random rnd = new Random();
+
+            // Распределение голосов с повышенной вероятностью правильного ответа
+            List<int> votes = new List<int> { 0, 0, 0, 0 };
+            correctAnswer = Math.Max(0, Math.Min(3, correctAnswer));
+            votes[correctAnswer] = rnd.Next(40, 70);
+            int remainingVotes = totalVotes - votes[correctAnswer];
+            List<int> wrongAnswers = Enumerable.Range(0, 4).Where(i => i != correctAnswer).ToList();
+
+            foreach (int i in wrongAnswers)
+            {
+                if (remainingVotes <= 0) break; // Проверяем, есть ли еще голоса для распределения
+
+                int maxShare = remainingVotes / (wrongAnswers.Count - wrongAnswers.IndexOf(i));
+                int voteShare = maxShare > 0 ? rnd.Next(0, maxShare + 1) : 0; // Предотвращаем rnd.Next(0, 0)
+
+                votes[i] = voteShare;
+                remainingVotes -= voteShare;
+            }
+
+            // Оставшиеся голоса добавляем к случайному неправильному ответу
+            if (remainingVotes > 0)
+            {
+                votes[wrongAnswers[rnd.Next(wrongAnswers.Count)]] += remainingVotes;
+            }
+
+
+            // Очистка и обновление диаграммы
+            chart1.Series.Clear();
+            chart1.Legends.Clear();
+            Series series = chart1.Series.Add("Голоса зала");
+            series.ChartType = SeriesChartType.Column;
+
+            string[] labels = { "A", "B", "C", "D" };
+            for (int i = 0; i < 4; i++)
+            {
+                series.Points.AddXY(labels[i], votes[i]);
+            }
+
+            chart1.Visible = true;
+        }
+
     }
 }
