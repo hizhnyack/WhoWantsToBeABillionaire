@@ -13,11 +13,11 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WhoWantsToBeABillionaire
 {
-    
+
     public partial class Form1 : Form
     {
         private bool audienceHelpUsed = false;
-
+        private string playerName;
 
         List<Question> questions = new List<Question>();
         private Random rnd = new Random();
@@ -54,19 +54,16 @@ namespace WhoWantsToBeABillionaire
 
         private Question GetQuestion(int level)
         {
-            SQLiteConnection cn = new SQLiteConnection();
-            cn.ConnectionString = @"Data Source=WWTBAB_SQLbase.db;Version=3";
-
-            cn.Open();
-
-            var cmd = new SQLiteCommand($@"select * from Questions WHERE Level={level} 
-                                            order by Random() LIMIT 1", cn);
-
-            var dr = cmd.ExecuteReader();
-            dr.Read();
-            Question q = new Question(dr);
-
-            return q;
+            using (SQLiteConnection cn = new SQLiteConnection(@"Data Source=WWTBAB_SQLbase.db;Version=3;Pooling=True"))
+            {
+                cn.Open();
+                var cmd = new SQLiteCommand($@"SELECT * FROM Questions WHERE Level={level} 
+                                       ORDER BY Random() LIMIT 1", cn);
+                var dr = cmd.ExecuteReader();
+                dr.Read();
+                Question q = new Question(dr);
+                return q;
+            }
         }
 
         //private Question GetQuestion(int level)
@@ -77,7 +74,7 @@ namespace WhoWantsToBeABillionaire
         private void NextStep()
         {
             Button[] btns = new Button[] { btnAnswerA, btnAnswerB,
-btnAnswerC, btnAnswerC };
+btnAnswerC, btnAnswerD };
 
             foreach (Button btn in btns)
                 btn.Enabled = true;
@@ -90,6 +87,13 @@ btnAnswerC, btnAnswerC };
         }
         private void startGame()
         {
+            LoadTopPlayers();
+
+            playerName = Microsoft.VisualBasic.Interaction.InputBox("Введите ваше имя:", "Имя игрока", "Гость");
+            if (string.IsNullOrEmpty(playerName))
+            {
+                playerName = "Гость"; // Если имя не введено, используем "Гость"
+            }
             level = 0;
             NextStep();
             audienceHelpUsed = false;
@@ -106,6 +110,7 @@ btnAnswerC, btnAnswerC };
             else
             {
                 MessageBox.Show("Неверный ответ!");
+                SaveHighScore(playerName, level); // Сохраняем результат
                 startGame();
             }
         }
@@ -118,6 +123,7 @@ btnAnswerC, btnAnswerC };
             else
             {
                 MessageBox.Show("Неверный ответ!");
+                SaveHighScore(playerName, level); // Сохраняем результат
                 startGame();
             }
         }
@@ -130,6 +136,7 @@ btnAnswerC, btnAnswerC };
             else
             {
                 MessageBox.Show("Неверный ответ!");
+                SaveHighScore(playerName, level); // Сохраняем результат
                 startGame();
             }
         }
@@ -142,6 +149,7 @@ btnAnswerC, btnAnswerC };
             else
             {
                 MessageBox.Show("Неверный ответ!");
+                SaveHighScore(playerName, level); // Сохраняем результат
                 startGame();
             }
         }
@@ -149,7 +157,7 @@ btnAnswerC, btnAnswerC };
         private void bntFiftyFifty_Click(object sender, EventArgs e)
         {
             Button[] btns = new Button[] { btnAnswerA, btnAnswerB,
-                btnAnswerC, btnAnswerC };
+                btnAnswerC, btnAnswerD };
 
             int count = 0;
             while (count < 2)
@@ -168,7 +176,7 @@ btnAnswerC, btnAnswerC };
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            LoadTopPlayers();
         }
 
         private void btnAudienceHelp_Click(object sender, EventArgs e)
@@ -222,6 +230,37 @@ btnAnswerC, btnAnswerC };
 
             chart1.Visible = true;
         }
+        private void SaveHighScore(string playerName, int score)
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(@"Data Source=WWTBAB_SQLbase.db;Version=3;Pooling=True"))
+            {
+                cn.Open();
+                var cmd = new SQLiteCommand($@"INSERT INTO HighScores (PlayerName, Score) 
+                                       VALUES ('{playerName}', {score})", cn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        private void LoadTopPlayers()
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(@"Data Source=WWTBAB_SQLbase.db;Version=3;Pooling=True"))
+            {
+                cn.Open();
+                using (var cmd = new SQLiteCommand($@"SELECT PlayerName, Score FROM HighScores 
+                                              ORDER BY Score DESC LIMIT 10", cn))
+                {
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        lstTopPlayers.Items.Clear();
 
+                        while (dr.Read())
+                        {
+                            string playerName = dr["PlayerName"].ToString();
+                            int score = Convert.ToInt32(dr["Score"]);
+                            lstTopPlayers.Items.Add($"{playerName}: {score} уровень");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

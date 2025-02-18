@@ -41,6 +41,8 @@
             this.bntFiftyFifty = new System.Windows.Forms.Button();
             this.btnAudienceHelp = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lstTopPlayers = new System.Windows.Forms.ListBox();
+            this.rate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -141,9 +143,9 @@
             // 
             // bntFiftyFifty
             // 
-            this.bntFiftyFifty.Location = new System.Drawing.Point(474, 287);
+            this.bntFiftyFifty.Location = new System.Drawing.Point(459, 295);
             this.bntFiftyFifty.Name = "bntFiftyFifty";
-            this.bntFiftyFifty.Size = new System.Drawing.Size(75, 23);
+            this.bntFiftyFifty.Size = new System.Drawing.Size(97, 23);
             this.bntFiftyFifty.TabIndex = 7;
             this.bntFiftyFifty.Text = "50/50";
             this.bntFiftyFifty.UseVisualStyleBackColor = true;
@@ -151,11 +153,11 @@
             // 
             // btnAudienceHelp
             // 
-            this.btnAudienceHelp.Location = new System.Drawing.Point(474, 326);
+            this.btnAudienceHelp.Location = new System.Drawing.Point(459, 337);
             this.btnAudienceHelp.Name = "btnAudienceHelp";
-            this.btnAudienceHelp.Size = new System.Drawing.Size(75, 23);
+            this.btnAudienceHelp.Size = new System.Drawing.Size(97, 23);
             this.btnAudienceHelp.TabIndex = 8;
-            this.btnAudienceHelp.Text = "AuditoryHelp";
+            this.btnAudienceHelp.Text = "Помощь зала";
             this.btnAudienceHelp.UseVisualStyleBackColor = true;
             this.btnAudienceHelp.Click += new System.EventHandler(this.btnAudienceHelp_Click);
             // 
@@ -175,11 +177,30 @@
             this.chart1.TabIndex = 9;
             this.chart1.Text = "chart1";
             // 
+            // lstTopPlayers
+            // 
+            this.lstTopPlayers.FormattingEnabled = true;
+            this.lstTopPlayers.Location = new System.Drawing.Point(570, 34);
+            this.lstTopPlayers.Name = "lstTopPlayers";
+            this.lstTopPlayers.Size = new System.Drawing.Size(138, 238);
+            this.lstTopPlayers.TabIndex = 10;
+            // 
+            // rate
+            // 
+            this.rate.AutoSize = true;
+            this.rate.Location = new System.Drawing.Point(579, 11);
+            this.rate.Name = "rate";
+            this.rate.Size = new System.Drawing.Size(48, 13);
+            this.rate.TabIndex = 11;
+            this.rate.Text = "Рейнтиг";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 438);
+            this.ClientSize = new System.Drawing.Size(727, 443);
+            this.Controls.Add(this.rate);
+            this.Controls.Add(this.lstTopPlayers);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.btnAudienceHelp);
             this.Controls.Add(this.bntFiftyFifty);
@@ -196,6 +217,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,6 +233,8 @@
         private System.Windows.Forms.Button bntFiftyFifty;
         private System.Windows.Forms.Button btnAudienceHelp;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ListBox lstTopPlayers;
+        private System.Windows.Forms.Label rate;
     }
 }
 
