@@ -16,6 +16,8 @@ namespace WhoWantsToBeABillionaire
 
     public partial class Form1 : Form
     {
+        private bool secondChanceUsed = false; // Флаг использования подсказки
+        private int remainingAttempts = 0;     // Оставшиеся попытки
         private bool audienceHelpUsed = false;
         private string playerName;
 
@@ -100,57 +102,189 @@ btnAnswerC, btnAnswerD };
             btnAudienceHelp.Enabled = true;
             chart1.Visible = false;
             bntFiftyFifty.Enabled = true;
+            secondChanceUsed = false;
+            remainingAttempts = 0;
+            btnSecondChance.Enabled = true; // Активируем кнопку
         }
 
         private void btnAnswerA_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (currentQuestion.RightAnswer == int.Parse(button.Tag.ToString()))
-                NextStep();
-            else
+            int selectedAnswer = int.Parse(button.Tag.ToString());
+
+            if (secondChanceUsed && remainingAttempts > 0)
             {
-                MessageBox.Show("Неверный ответ!");
-                SaveHighScore(playerName, level); // Сохраняем результат
-                startGame();
+                remainingAttempts--;
+
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                    secondChanceUsed = false; // Сбрасываем флаг
+                    remainingAttempts = 0;
+                }
+                else
+                {
+                    if (remainingAttempts == 0)
+                    {
+                        MessageBox.Show("Оба ответа неверны!");
+                        SaveHighScore(playerName, level);
+                        startGame();
+                    }
+                    else
+                    {
+                        button.Enabled = false;
+                        MessageBox.Show("Неверно! Осталась 1 попытка.");
+                    }
+                }
+            }
+            else // Стандартная проверка (без подсказки)
+            {
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ответ!");
+                    SaveHighScore(playerName, level);
+                    startGame();
+                }
             }
         }
 
         private void btnAnswerB_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (currentQuestion.RightAnswer == int.Parse(button.Tag.ToString()))
-                NextStep();
-            else
+            int selectedAnswer = int.Parse(button.Tag.ToString());
+
+            if (secondChanceUsed && remainingAttempts > 0)
             {
-                MessageBox.Show("Неверный ответ!");
-                SaveHighScore(playerName, level); // Сохраняем результат
-                startGame();
+                remainingAttempts--;
+
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                    secondChanceUsed = false; // Сбрасываем флаг
+                    remainingAttempts = 0;
+                }
+                else
+                {
+                    if (remainingAttempts == 0)
+                    {
+                        MessageBox.Show("Оба ответа неверны!");
+                        SaveHighScore(playerName, level);
+                        startGame();
+                    }
+                    else
+                    {
+                        button.Enabled = false;
+                        MessageBox.Show("Неверно! Осталась 1 попытка.");
+                    }
+                }
+            }
+            else // Стандартная проверка (без подсказки)
+            {
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ответ!");
+                    SaveHighScore(playerName, level);
+                    startGame();
+                }
             }
         }
 
         private void btnAnswerC_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (currentQuestion.RightAnswer == int.Parse(button.Tag.ToString()))
-                NextStep();
-            else
+            int selectedAnswer = int.Parse(button.Tag.ToString());
+
+            if (secondChanceUsed && remainingAttempts > 0)
             {
-                MessageBox.Show("Неверный ответ!");
-                SaveHighScore(playerName, level); // Сохраняем результат
-                startGame();
+                remainingAttempts--;
+
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                    secondChanceUsed = false; // Сбрасываем флаг
+                    remainingAttempts = 0;
+                }
+                else
+                {
+                    if (remainingAttempts == 0)
+                    {
+                        MessageBox.Show("Оба ответа неверны!");
+                        SaveHighScore(playerName, level);
+                        startGame();
+                    }
+                    else
+                    {
+                        button.Enabled = false;
+                        MessageBox.Show("Неверно! Осталась 1 попытка.");
+                    }
+                }
+            }
+            else // Стандартная проверка (без подсказки)
+            {
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ответ!");
+                    SaveHighScore(playerName, level);
+                    startGame();
+                }
             }
         }
 
         private void btnAnswerD_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (currentQuestion.RightAnswer == int.Parse(button.Tag.ToString()))
-                NextStep();
-            else
+            int selectedAnswer = int.Parse(button.Tag.ToString());
+
+            if (secondChanceUsed && remainingAttempts > 0)
             {
-                MessageBox.Show("Неверный ответ!");
-                SaveHighScore(playerName, level); // Сохраняем результат
-                startGame();
+                remainingAttempts--;
+
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    
+                    NextStep();
+                    secondChanceUsed = false; // Сбрасываем флаг
+                    remainingAttempts = 0;
+                }
+                else
+                {
+                    if (remainingAttempts == 0)
+                    {
+                        MessageBox.Show("Оба ответа неверны!");
+                        SaveHighScore(playerName, level);
+                        startGame();
+                    }
+                    else
+                    {
+                        button.Enabled = false;
+                        MessageBox.Show("Неверно! Осталась 1 попытка.");
+                    }
+                }
+            }
+            else // Стандартная проверка (без подсказки)
+            {
+                if (currentQuestion.RightAnswer == selectedAnswer)
+                {
+                    NextStep();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ответ!");
+                    SaveHighScore(playerName, level);
+                    startGame();
+                }
             }
         }
 
@@ -261,6 +395,13 @@ btnAnswerC, btnAnswerD };
                     }
                 }
             }
+        }
+
+        private void btnSecondChance_Click(object sender, EventArgs e)
+        {
+            secondChanceUsed = true;
+            remainingAttempts = 2;
+            btnSecondChance.Enabled = false; // Деактивируем кнопку после использования
         }
     }
 }
