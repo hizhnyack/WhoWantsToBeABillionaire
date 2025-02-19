@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAnswerA = new System.Windows.Forms.Button();
             this.btnAnswerB = new System.Windows.Forms.Button();
@@ -45,6 +45,7 @@
             this.rate = new System.Windows.Forms.Label();
             this.btnSecondChance = new System.Windows.Forms.Button();
             this.btnQuestnChange = new System.Windows.Forms.Button();
+            this.btnPhoneAFriend = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             // btnAnswerA
             // 
             this.btnAnswerA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAnswerA.Location = new System.Drawing.Point(12, 326);
+            this.btnAnswerA.Location = new System.Drawing.Point(12, 339);
             this.btnAnswerA.Name = "btnAnswerA";
             this.btnAnswerA.Size = new System.Drawing.Size(202, 42);
             this.btnAnswerA.TabIndex = 1;
@@ -74,7 +75,7 @@
             // btnAnswerB
             // 
             this.btnAnswerB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAnswerB.Location = new System.Drawing.Point(12, 388);
+            this.btnAnswerB.Location = new System.Drawing.Point(12, 401);
             this.btnAnswerB.Name = "btnAnswerB";
             this.btnAnswerB.Size = new System.Drawing.Size(202, 38);
             this.btnAnswerB.TabIndex = 2;
@@ -86,7 +87,7 @@
             // btnAnswerC
             // 
             this.btnAnswerC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAnswerC.Location = new System.Drawing.Point(232, 326);
+            this.btnAnswerC.Location = new System.Drawing.Point(232, 339);
             this.btnAnswerC.Name = "btnAnswerC";
             this.btnAnswerC.Size = new System.Drawing.Size(184, 42);
             this.btnAnswerC.TabIndex = 3;
@@ -98,7 +99,7 @@
             // btnAnswerD
             // 
             this.btnAnswerD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAnswerD.Location = new System.Drawing.Point(232, 388);
+            this.btnAnswerD.Location = new System.Drawing.Point(232, 401);
             this.btnAnswerD.Name = "btnAnswerD";
             this.btnAnswerD.Size = new System.Drawing.Size(184, 38);
             this.btnAnswerD.TabIndex = 4;
@@ -110,9 +111,9 @@
             // lblQuestion
             // 
             this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblQuestion.Location = new System.Drawing.Point(14, 269);
+            this.lblQuestion.Location = new System.Drawing.Point(9, 269);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(431, 49);
+            this.lblQuestion.Size = new System.Drawing.Size(418, 67);
             this.lblQuestion.TabIndex = 5;
             this.lblQuestion.Text = "label1";
             // 
@@ -140,7 +141,7 @@
             this.lstLevel.Location = new System.Drawing.Point(474, 12);
             this.lstLevel.Name = "lstLevel";
             this.lstLevel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lstLevel.Size = new System.Drawing.Size(75, 260);
+            this.lstLevel.Size = new System.Drawing.Size(79, 244);
             this.lstLevel.TabIndex = 6;
             // 
             // bntFiftyFifty
@@ -155,7 +156,7 @@
             // 
             // btnAudienceHelp
             // 
-            this.btnAudienceHelp.Location = new System.Drawing.Point(451, 337);
+            this.btnAudienceHelp.Location = new System.Drawing.Point(451, 326);
             this.btnAudienceHelp.Name = "btnAudienceHelp";
             this.btnAudienceHelp.Size = new System.Drawing.Size(112, 23);
             this.btnAudienceHelp.TabIndex = 8;
@@ -165,16 +166,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(49, 10);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(49, 12);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(367, 227);
             this.chart1.TabIndex = 9;
             this.chart1.Text = "chart1";
@@ -182,23 +183,23 @@
             // lstTopPlayers
             // 
             this.lstTopPlayers.FormattingEnabled = true;
-            this.lstTopPlayers.Location = new System.Drawing.Point(570, 34);
+            this.lstTopPlayers.Location = new System.Drawing.Point(579, 133);
             this.lstTopPlayers.Name = "lstTopPlayers";
-            this.lstTopPlayers.Size = new System.Drawing.Size(138, 238);
+            this.lstTopPlayers.Size = new System.Drawing.Size(143, 160);
             this.lstTopPlayers.TabIndex = 10;
             // 
             // rate
             // 
             this.rate.AutoSize = true;
-            this.rate.Location = new System.Drawing.Point(579, 11);
+            this.rate.Location = new System.Drawing.Point(624, 85);
             this.rate.Name = "rate";
             this.rate.Size = new System.Drawing.Size(48, 13);
             this.rate.TabIndex = 11;
-            this.rate.Text = "Рейнтиг";
+            this.rate.Text = "Рейтинг";
             // 
             // btnSecondChance
             // 
-            this.btnSecondChance.Location = new System.Drawing.Point(451, 375);
+            this.btnSecondChance.Location = new System.Drawing.Point(451, 355);
             this.btnSecondChance.Name = "btnSecondChance";
             this.btnSecondChance.Size = new System.Drawing.Size(112, 26);
             this.btnSecondChance.TabIndex = 12;
@@ -209,19 +210,30 @@
             // btnQuestnChange
             // 
             this.btnQuestnChange.AllowDrop = true;
-            this.btnQuestnChange.Location = new System.Drawing.Point(594, 295);
+            this.btnQuestnChange.Location = new System.Drawing.Point(451, 387);
             this.btnQuestnChange.Name = "btnQuestnChange";
-            this.btnQuestnChange.Size = new System.Drawing.Size(114, 23);
+            this.btnQuestnChange.Size = new System.Drawing.Size(112, 23);
             this.btnQuestnChange.TabIndex = 13;
             this.btnQuestnChange.Text = "Замена вопроса";
             this.btnQuestnChange.UseVisualStyleBackColor = true;
             this.btnQuestnChange.Click += new System.EventHandler(this.btnQuestnChange_Click);
             // 
+            // btnPhoneAFriend
+            // 
+            this.btnPhoneAFriend.Location = new System.Drawing.Point(451, 416);
+            this.btnPhoneAFriend.Name = "btnPhoneAFriend";
+            this.btnPhoneAFriend.Size = new System.Drawing.Size(112, 23);
+            this.btnPhoneAFriend.TabIndex = 14;
+            this.btnPhoneAFriend.Text = "Звонок другу";
+            this.btnPhoneAFriend.UseVisualStyleBackColor = true;
+            this.btnPhoneAFriend.Click += new System.EventHandler(this.btnPhoneAFriend_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 443);
+            this.ClientSize = new System.Drawing.Size(734, 476);
+            this.Controls.Add(this.btnPhoneAFriend);
             this.Controls.Add(this.btnQuestnChange);
             this.Controls.Add(this.btnSecondChance);
             this.Controls.Add(this.rate);
@@ -262,6 +274,7 @@
         private System.Windows.Forms.Label rate;
         private System.Windows.Forms.Button btnSecondChance;
         private System.Windows.Forms.Button btnQuestnChange;
+        private System.Windows.Forms.Button btnPhoneAFriend;
     }
 }
 

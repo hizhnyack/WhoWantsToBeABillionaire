@@ -20,6 +20,7 @@ namespace WhoWantsToBeABillionaire
         private int remainingAttempts = 0;     // Оставшиеся попытки
         private bool audienceHelpUsed = false;
         private string playerName;
+        private bool phoneAFriendUsed = false;
 
         List<Question> questions = new List<Question>();
         private Random rnd = new Random();
@@ -87,6 +88,8 @@ btnAnswerC, btnAnswerD };
             secondChanceUsed = false;
             remainingAttempts = 0;
             btnSecondChance.Enabled = true; // Активируем кнопку
+            phoneAFriendUsed = false;
+            btnPhoneAFriend.Enabled = true;
         }
 
         private void ClickButton_Click(object sender, EventArgs e)
@@ -256,5 +259,43 @@ btnAnswerC, btnAnswerD };
             level--;
             NextStep();
         }
+
+        private void btnPhoneAFriend_Click(object sender, EventArgs e)
+        {
+            if (phoneAFriendUsed)
+                return;
+
+            phoneAFriendUsed = true;
+            btnPhoneAFriend.Enabled = false;
+
+            Form phoneCallForm = new Form();
+            phoneCallForm.Text = "Звонок другу";
+            phoneCallForm.Size = new Size(300, 150);
+
+            Label lblTimer = new Label();
+            lblTimer.Text = "30";
+            lblTimer.Font = new Font("Arial", 20, FontStyle.Bold);
+            lblTimer.AutoSize = false;
+            lblTimer.TextAlign = ContentAlignment.MiddleCenter;
+            lblTimer.Dock = DockStyle.Fill;
+            phoneCallForm.Controls.Add(lblTimer);
+
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            int timeLeft = 30;
+            timer.Tick += (s, ev) =>
+            {
+                timeLeft--;
+                lblTimer.Text = timeLeft.ToString();
+                if (timeLeft <= 0)
+                {
+                    timer.Stop();
+                    phoneCallForm.Close();
+                }
+            };
+            timer.Start();
+            phoneCallForm.ShowDialog();
+        }
     }
 }
+
