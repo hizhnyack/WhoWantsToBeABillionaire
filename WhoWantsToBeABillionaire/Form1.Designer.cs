@@ -44,6 +44,7 @@
             this.lstTopPlayers = new System.Windows.Forms.ListBox();
             this.rate = new System.Windows.Forms.Label();
             this.btnSecondChance = new System.Windows.Forms.Button();
+            this.btnQuestnChange = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -205,11 +206,23 @@
             this.btnSecondChance.UseVisualStyleBackColor = true;
             this.btnSecondChance.Click += new System.EventHandler(this.btnSecondChance_Click);
             // 
+            // btnQuestnChange
+            // 
+            this.btnQuestnChange.AllowDrop = true;
+            this.btnQuestnChange.Location = new System.Drawing.Point(594, 295);
+            this.btnQuestnChange.Name = "btnQuestnChange";
+            this.btnQuestnChange.Size = new System.Drawing.Size(114, 23);
+            this.btnQuestnChange.TabIndex = 13;
+            this.btnQuestnChange.Text = "Замена вопроса";
+            this.btnQuestnChange.UseVisualStyleBackColor = true;
+            this.btnQuestnChange.Click += new System.EventHandler(this.btnQuestnChange_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 443);
+            this.Controls.Add(this.btnQuestnChange);
             this.Controls.Add(this.btnSecondChance);
             this.Controls.Add(this.rate);
             this.Controls.Add(this.lstTopPlayers);
@@ -248,6 +261,7 @@
         private System.Windows.Forms.ListBox lstTopPlayers;
         private System.Windows.Forms.Label rate;
         private System.Windows.Forms.Button btnSecondChance;
+        private System.Windows.Forms.Button btnQuestnChange;
     }
 }
 

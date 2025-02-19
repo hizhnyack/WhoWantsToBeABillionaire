@@ -249,5 +249,12 @@ btnAnswerC, btnAnswerD };
             remainingAttempts = 2;
             btnSecondChance.Enabled = false; // Деактивируем кнопку после использования
         }
+
+        private void btnQuestnChange_Click(object sender, EventArgs e)
+        {
+            btnQuestnChange.Enabled = false;
+            level--;
+            NextStep();
+        }
     }
 }
