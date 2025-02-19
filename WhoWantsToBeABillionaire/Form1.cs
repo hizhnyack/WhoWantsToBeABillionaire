@@ -29,22 +29,9 @@ namespace WhoWantsToBeABillionaire
         public Form1()
         {
             InitializeComponent();
-            //ReadFile();
             startGame();
         }
-        //private void ReadFile()
-        //{
-        //    string path = @"Вопросы.txt";
-
-        //    using (StreamReader sr = new StreamReader(path))
-        //    {
-        //        string line;
-        //        while ((line = sr.ReadLine()) != null)
-        //        {
-        //            questions.Add(new Question(line.Split('\t')));
-        //        }
-        //    }
-        //}
+       
         private void ShowQuestion(Question q)
         {
             lblQuestion.Text = q.Text;
@@ -68,11 +55,6 @@ namespace WhoWantsToBeABillionaire
             }
         }
 
-        //private Question GetQuestion(int level)
-        //{
-        //    var questionsWithLevel = questions.Where(q => q.Level == level).ToList();
-        //    return questionsWithLevel[rnd.Next(questionsWithLevel.Count)];
-        //}
         private void NextStep()
         {
             Button[] btns = new Button[] { btnAnswerA, btnAnswerB,
@@ -107,7 +89,7 @@ btnAnswerC, btnAnswerD };
             btnSecondChance.Enabled = true; // Активируем кнопку
         }
 
-        private void btnAnswerA_Click(object sender, EventArgs e)
+        private void ClickButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             int selectedAnswer = int.Parse(button.Tag.ToString());
@@ -118,142 +100,6 @@ btnAnswerC, btnAnswerD };
 
                 if (currentQuestion.RightAnswer == selectedAnswer)
                 {
-                    NextStep();
-                    secondChanceUsed = false; // Сбрасываем флаг
-                    remainingAttempts = 0;
-                }
-                else
-                {
-                    if (remainingAttempts == 0)
-                    {
-                        MessageBox.Show("Оба ответа неверны!");
-                        SaveHighScore(playerName, level);
-                        startGame();
-                    }
-                    else
-                    {
-                        button.Enabled = false;
-                        MessageBox.Show("Неверно! Осталась 1 попытка.");
-                    }
-                }
-            }
-            else // Стандартная проверка (без подсказки)
-            {
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    NextStep();
-                }
-                else
-                {
-                    MessageBox.Show("Неверный ответ!");
-                    SaveHighScore(playerName, level);
-                    startGame();
-                }
-            }
-        }
-
-        private void btnAnswerB_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            int selectedAnswer = int.Parse(button.Tag.ToString());
-
-            if (secondChanceUsed && remainingAttempts > 0)
-            {
-                remainingAttempts--;
-
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    NextStep();
-                    secondChanceUsed = false; // Сбрасываем флаг
-                    remainingAttempts = 0;
-                }
-                else
-                {
-                    if (remainingAttempts == 0)
-                    {
-                        MessageBox.Show("Оба ответа неверны!");
-                        SaveHighScore(playerName, level);
-                        startGame();
-                    }
-                    else
-                    {
-                        button.Enabled = false;
-                        MessageBox.Show("Неверно! Осталась 1 попытка.");
-                    }
-                }
-            }
-            else // Стандартная проверка (без подсказки)
-            {
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    NextStep();
-                }
-                else
-                {
-                    MessageBox.Show("Неверный ответ!");
-                    SaveHighScore(playerName, level);
-                    startGame();
-                }
-            }
-        }
-
-        private void btnAnswerC_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            int selectedAnswer = int.Parse(button.Tag.ToString());
-
-            if (secondChanceUsed && remainingAttempts > 0)
-            {
-                remainingAttempts--;
-
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    NextStep();
-                    secondChanceUsed = false; // Сбрасываем флаг
-                    remainingAttempts = 0;
-                }
-                else
-                {
-                    if (remainingAttempts == 0)
-                    {
-                        MessageBox.Show("Оба ответа неверны!");
-                        SaveHighScore(playerName, level);
-                        startGame();
-                    }
-                    else
-                    {
-                        button.Enabled = false;
-                        MessageBox.Show("Неверно! Осталась 1 попытка.");
-                    }
-                }
-            }
-            else // Стандартная проверка (без подсказки)
-            {
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    NextStep();
-                }
-                else
-                {
-                    MessageBox.Show("Неверный ответ!");
-                    SaveHighScore(playerName, level);
-                    startGame();
-                }
-            }
-        }
-
-        private void btnAnswerD_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            int selectedAnswer = int.Parse(button.Tag.ToString());
-
-            if (secondChanceUsed && remainingAttempts > 0)
-            {
-                remainingAttempts--;
-
-                if (currentQuestion.RightAnswer == selectedAnswer)
-                {
-                    
                     NextStep();
                     secondChanceUsed = false; // Сбрасываем флаг
                     remainingAttempts = 0;
